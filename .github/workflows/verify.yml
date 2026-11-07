@@ -1,0 +1,40 @@
+name: Doc-Grounded Builder — unit, build, live MCP
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tests-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - name: Test docs gate, ABI parsing and verification
+        run: npm test
+      - name: Build Cloudflare Worker
+        run: npm run build
+  live-mcp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - name: Verify three live Docs MCP → Chain MCP workflows
+        run: npm run smoke
+      - name: Publish real live MCP evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pharos-doc-grounded-live-evidence
+          path: proof/live-run.json
+          if-no-files-found: warn
+          retention-days: 30
