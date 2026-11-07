@@ -1,0 +1,45 @@
+{
+  "schema": "pharos-doc-grounded-builder-verified-v1",
+  "verifiedAtUtc": "2026-11-07T07:07:20Z",
+  "source": "https://github.com/trantanlong2411-droid/Doc-Grounded-Builder-Agent/actions/runs/42349893910",
+  "docsMcp": "https://docs.pharos.xyz/~gitbook/mcp",
+  "chainMcp": "https://mcp.pharos.xyz/mcp",
+  "network": "Pharos Mainnet",
+  "chainId": 1672,
+  "allVerified": true,
+  "examples": [
+    {
+      "question": "How do I read the latest PROS/USD oracle price on Pharos?",
+      "signature": "latestAnswer()",
+      "block": 22354657,
+      "value": "0.54279821",
+      "unit": "USD / PROS",
+      "result": "SUCCESS",
+      "verified": true
+    },
+    {
+      "question": "How do I check when the PROS/USD oracle price was last observed on Pharos?",
+      "signature": "latestTimestamp()",
+      "block": 22354661,
+      "value": "2026-11-07T06:37:38.000Z",
+      "result": "SUCCESS",
+      "verified": true
+    },
+    {
+      "question": "How do I check the feed ID of the PROS/USD Chainlink proxy on Pharos?",
+      "signature": "getFeedId()",
+      "block": 22354665,
+      "value": "0x0003f73a1abb2eec1ecdde915c659cbb8f0cbb030156b75dd401fbfd5281e246",
+      "result": "SUCCESS",
+      "verified": true
+    }
+  ],
+  "unsupportedQuestion": {
+    "question": "How do I bridge SOL to Pharos?",
+    "result": "NOT_DOCUMENTED",
+    "chainCalled": false
+  },
+  "readOnly": true,
+  "noMinedTransactionHashes": true,
+  "warning": "Live read-only calls, NOT mined writes; values are observation-time samples"
+}
